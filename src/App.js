@@ -1,7 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react";
+import logo from "./logo.svg";
+import "./App.css";
 
 function App() {
+  useEffect(() => {
+    const searchTerm = "example"; // Replace with your search term
+
+    fetch(`/search?term=${searchTerm}`)
+      .then((response) => response.json())
+      .then((data) => {
+        // Process the search results
+        console.log(data);
+      })
+      .catch((error) => {
+        // Handle any errors
+        console.error("Error:", error);
+      });
+  }, []); // Empty dependency array to run the effect only once
+
   return (
     <div className="App">
       <header className="App-header">
@@ -14,8 +30,7 @@ function App() {
           className="App-link"
           href="https://reactjs.org"
           target="_blank"
-          rel="noopener noreferrer"
-        >
+          rel="noopener noreferrer">
           Learn React
         </a>
       </header>
